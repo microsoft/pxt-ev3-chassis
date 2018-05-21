@@ -2,28 +2,28 @@
 /**
  * A differential drive robot
  */
-//% weight=50 color=#cf00cf
+//% color="#00751B" weight=89 icon="\uf10d"
 namespace chassis {
     /**
      * A differential drive robot
      */
     //% fixedInstances
     export class Chassis {
-        // the motor pair,m default BC
-        public motors: motors.SynchedMotorPair;
+        /**
+         *  the motor pair,m default BC
+         */
+        motors: motors.SynchedMotorPair;
         /**
          *  the radius of the wheel (cm), default is 3cm.
          */
-        //% blockCombine
-        public wheelRadius: number;
+        wheelRadius: number;
         /**
         * the distance between the wheels (cm), default is 12cm.
         */
-        //% blockCombine
-        public baseLength: number;
+        baseLength: number;
 
-        constructor() {
-            this.motors = motors.largeBC;
+        constructor(motors: motors.SynchedMotorPair) {
+            this.motors = motors;
             this.wheelRadius = 3;
             this.baseLength = 12;
         }
@@ -35,9 +35,11 @@ namespace chassis {
          * @param rotationSpeed rotation of the robot around the center point, eg: 30
          * @param distance
          **/
-        //% blockId=motorDrive block="drive %chassis|at %speed|cm/s|turning %rotationSpeed|deg/s"
+        //% group="Move"
+        //% blockId=motorDrive block="drive %chassis at %speed cm/s turning %rotationSpeed deg/s for %distance cm"
         //% inlineInputMode=inline
         //% weight=95 blockGap=8
+        //% rotationSpeed.min=-3200 rotationSpeed.max=3200
         drive(speed: number, rotationSpeed: number, distance: number = 0) {
             if (!this.motors) return;
             if (!speed) {
@@ -67,11 +69,32 @@ namespace chassis {
         }
         
         /**
+         * Sets the wheel radius in centimeters
+         * @param cm the radios of a wheel in cm, eg: 3
+         */
+        //% blockId=chassisSetWheelRadius block="set %chassis|wheel radius to %cm (cm)"
+        //% group="Properties"
+        setWheelRadius(cm: number) {
+            this.wheelRadius = cm;
+        }
+
+        /**
+         * Sets the base length in centimeters
+         * @param cm the base length in cm, eg: 12
+         */
+        //% blockId=chassisSetBaseLength block="set %chassis base length to %cm (cm)"
+        //% group="Properties"
+        setBaseLength(cm: number) {
+            this.baseLength = cm;
+        }
+                
+        /**
          * Sets the motors used by the chassis, default is B+C
          * @param motors 
          */
-        //% blockId=chassisSetMotors block="set %chassis|motors to %motors"
+        //% blockId=chassisSetMotors block="set %chassis motors to %motors"
         //% weight=10
+        //% group="Properties"
         setMotors(motors: motors.SynchedMotorPair) {
             this.motors = motors;
         }
@@ -82,5 +105,11 @@ namespace chassis {
     }
 
     //% fixedInstance whenUsed
-    export const chassis = new Chassis();
+    export const largeBC = new Chassis(motors.largeBC);
+    //% fixedInstance whenUsed
+    export const largeAB = new Chassis(motors.largeAB);
+    //% fixedInstance whenUsed
+    export const largeAD = new Chassis(motors.largeAD);
+    //% fixedInstance whenUsed
+    export const largeCD = new Chassis(motors.largeCD);
 }
