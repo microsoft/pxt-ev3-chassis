@@ -1,0 +1,21 @@
+{
+    "name": "ev3-chassis",
+    "version": "0.0.0",
+    "description": "Controlling a chassis-like EV3 robot",
+    "license": "MIT",
+    "dependencies": {
+        "ev3": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false,
+    "targetVersions": {
+        "target": "0.1.56",
+        "pxt": "3.14.9"
+    }
+}
