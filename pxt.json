@@ -1,6 +1,6 @@
 {
     "name": "ev3-chassis",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Controlling a chassis-like EV3 robot",
     "license": "MIT",
     "dependencies": {
