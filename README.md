@@ -19,6 +19,7 @@ MIT
 ## Supported targets
 
 * for PXT/ev3
+* for PXT/linux
 
 (The metadata above is needed for package search.)
 
