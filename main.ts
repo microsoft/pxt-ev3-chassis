@@ -87,17 +87,6 @@ namespace chassis {
         setBaseLength(cm: number) {
             this.baseLength = cm;
         }
-                
-        /**
-         * Sets the motors used by the chassis, default is B+C
-         * @param motors 
-         */
-        //% blockId=chassisSetMotors block="set %chassis motors to %motors"
-        //% weight=10
-        //% group="Properties"
-        setMotors(motors: motors.SynchedMotorPair) {
-            this.motors = motors;
-        }
 
         toString(): string {
             return `chassis ${this.motors ? this.motors.toString() : "--"} base ${this.baseLength}, wheel ${this.wheelRadius}`;
